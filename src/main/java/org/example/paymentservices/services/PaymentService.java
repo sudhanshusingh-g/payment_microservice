@@ -1,5 +1,6 @@
 package org.example.paymentservices.services;
 
+import com.stripe.exception.StripeException;
 import org.example.paymentservices.paymentgateways.PaymentGateway;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public class PaymentService {
         this.paymentGateway = paymentGateway;
     }
 
-    public String createPaymentLink(String email,Long amount,Long orderId,Long phoneNumber){
+    public String createPaymentLink(String email,Long amount,Long orderId,Long phoneNumber) throws StripeException {
        return paymentGateway.initiatePayment(email,amount,orderId,phoneNumber);
     }
 }
